@@ -24,8 +24,8 @@ class MainActivity : ComponentActivity() {
             MOBILE_10_ExercicioQuizTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
 //                    StartScreen(modifier = Modifier.padding(innerPadding))
-//                    QuizScreen(modifier = Modifier.padding(innerPadding))
-                    ResultScreen(modifier = Modifier.padding(innerPadding))
+//                    QuizScreen(modifier = Modifier.padding(innerPadding), 1, 3)
+//                    ResultScreen(modifier = Modifier.padding(innerPadding))
                 }
             }
         }

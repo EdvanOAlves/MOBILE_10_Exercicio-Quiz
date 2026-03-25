@@ -41,7 +41,6 @@ fun QuizScreen(modifier: Modifier = Modifier, current:Int, final:Int) {
         )
         GreenDisplay(Modifier, "Pergunta $current de ${PointerEventPass.Final}")
 
-
         QuestionCard()
     }
 }

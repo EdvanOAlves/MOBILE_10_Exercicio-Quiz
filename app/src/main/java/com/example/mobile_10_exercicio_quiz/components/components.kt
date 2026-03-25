@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun MediumText(modifier: Modifier = Modifier, text:String) {
     Text(
-        modifier = Modifier.padding(vertical = 12.dp, horizontal = 24.dp),
+        modifier = modifier.padding(vertical = 12.dp, horizontal = 24.dp),
         text = text,
         fontSize = 24.sp,
         textAlign = TextAlign.Start

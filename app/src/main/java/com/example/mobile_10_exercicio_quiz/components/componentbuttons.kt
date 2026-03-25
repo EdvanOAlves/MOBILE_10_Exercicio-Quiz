@@ -40,6 +40,9 @@ fun QuestionOption(modifier: Modifier = Modifier, content:String) {
             .fillMaxWidth(),
         shape = RoundedCornerShape(8.dp)
     ) {
-        MediumText(text = content)
+        MediumText(
+            Modifier.fillMaxWidth(),
+            text = content,
+        )
     }
 }
