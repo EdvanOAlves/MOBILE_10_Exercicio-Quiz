@@ -17,13 +17,16 @@ import androidx.compose.ui.input.pointer.PointerEventPass
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.mobile_10_exercicio_quiz.R
 import com.example.mobile_10_exercicio_quiz.components.ButtonYellow
 import com.example.mobile_10_exercicio_quiz.components.QuestionCard
 import com.example.mobile_10_exercicio_quiz.components.GreenDisplay
 
 @Composable
-fun QuizScreen(modifier: Modifier = Modifier, current:Int, final:Int) {
+fun QuizScreen(modifier: Modifier = Modifier, /*current:Int, final:Int*/ navController: NavController) {
+    var current = 1;
+    val final = 3;
     Column(
         modifier =
             modifier
@@ -39,7 +42,7 @@ fun QuizScreen(modifier: Modifier = Modifier, current:Int, final:Int) {
             painter = painterResource(R.drawable.parrot),
             contentDescription = "Mascote"
         )
-        GreenDisplay(Modifier, "Pergunta $current de ${PointerEventPass.Final}")
+        GreenDisplay(Modifier, "Pergunta $current de $final")
 
         QuestionCard()
     }

@@ -17,11 +17,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.mobile_10_exercicio_quiz.R
 import com.example.mobile_10_exercicio_quiz.components.ButtonYellow
 
 @Composable
-fun StartScreen(modifier: Modifier = Modifier) {
+fun StartScreen(modifier: Modifier = Modifier, navController: NavController) {
     Column(
         modifier =
             modifier
@@ -38,9 +39,9 @@ fun StartScreen(modifier: Modifier = Modifier) {
             contentDescription = "Mascote"
         )
         Text(
-            text = "QUIZATRON 3000",
+            text = "Quiz dos bom de Terraria",
             fontSize = 36.sp)
-        ButtonYellow(Modifier, "COMECAR!")
+        ButtonYellow(Modifier, "COMECAR!", onClick = {navController.navigate("quiz")})
     }
 
 

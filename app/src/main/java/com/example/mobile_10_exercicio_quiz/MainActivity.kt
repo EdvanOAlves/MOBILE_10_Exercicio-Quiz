@@ -11,6 +11,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.mobile_10_exercicio_quiz.screens.QuizScreen
 import com.example.mobile_10_exercicio_quiz.screens.ResultScreen
 import com.example.mobile_10_exercicio_quiz.screens.StartScreen
@@ -23,7 +26,21 @@ class MainActivity : ComponentActivity() {
         setContent {
             MOBILE_10_ExercicioQuizTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-//                    StartScreen(modifier = Modifier.padding(innerPadding))
+                    val navController = rememberNavController()
+
+                    NavHost(
+                        navController = navController,
+                        startDestination = "start"
+                    ){
+                        composable(route = "start")
+                        {StartScreen(navController = navController)}
+
+                        composable(route = "quiz")
+                        {QuizScreen(navController = navController)}
+
+                        composable(route = "result")
+                        {ResultScreen(navController = navController)}
+                    }
 //                    QuizScreen(modifier = Modifier.padding(innerPadding), 1, 3)
 //                    ResultScreen(modifier = Modifier.padding(innerPadding))
                 }

@@ -1,5 +1,7 @@
 package com.example.mobile_10_exercicio_quiz.components
 
+import android.R.attr.onClick
+import android.R.attr.text
 import android.R.attr.textColor
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -15,9 +17,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun ButtonYellow(modifier: Modifier = Modifier, text:String) {
+fun ButtonYellow(modifier: Modifier = Modifier, text:String, onClick: ()->Unit) {
     OutlinedButton(
-        onClick = { /*TODO*/ },
+        onClick = onClick,
         colors = ButtonDefaults.buttonColors(
             containerColor = Color(227, 201, 65, 255),
         )

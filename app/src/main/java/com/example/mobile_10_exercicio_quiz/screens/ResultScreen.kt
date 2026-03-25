@@ -1,5 +1,6 @@
 package com.example.mobile_10_exercicio_quiz.screens
 
+import android.widget.MediaController
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -18,13 +19,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.mobile_10_exercicio_quiz.R
 import com.example.mobile_10_exercicio_quiz.components.ButtonYellow
 import com.example.mobile_10_exercicio_quiz.components.GreenDisplay
 import com.example.mobile_10_exercicio_quiz.components.MediumText
 
 @Composable
-fun ResultScreen(modifier: Modifier = Modifier) {
+fun ResultScreen(modifier: Modifier = Modifier, navController: NavController) {
     Column(
         modifier =
             modifier
@@ -52,7 +54,7 @@ fun ResultScreen(modifier: Modifier = Modifier) {
             MediumText(Modifier, "Você acertou 1 de 3 perguntas")
             Spacer(modifier = Modifier.height(24.dp))
         }
-        ButtonYellow(Modifier, "JOGAR NOVAMENTE")
+        ButtonYellow(Modifier, "JOGAR NOVAMENTE", {})
     }
 
 
