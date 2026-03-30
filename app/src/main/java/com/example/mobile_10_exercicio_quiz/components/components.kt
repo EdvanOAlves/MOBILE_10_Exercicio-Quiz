@@ -8,25 +8,26 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.PointerEventPass
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.mobile_10_exercicio_quiz.model.Question
+import com.example.mobile_10_exercicio_quiz.quiz.QuizScreenViewModel
 
 
 @Composable
-fun MediumText(modifier: Modifier = Modifier, text:String) {
+fun MediumText(modifier: Modifier = Modifier, text: String?) {
     Text(
         modifier = modifier.padding(vertical = 12.dp, horizontal = 24.dp),
-        text = text,
+        text = text.toString(),
         fontSize = 24.sp,
         textAlign = TextAlign.Start
     )
@@ -53,7 +54,9 @@ fun GreenDisplay(modifier: Modifier = Modifier, text:String) {
 }
 
 @Composable
-fun QuestionCard(modifier: Modifier = Modifier) {
+fun QuestionCard(modifier: Modifier = Modifier, quizScreenViewModel: QuizScreenViewModel) {
+    val currentQuestion by quizScreenViewModel.currentQuestion.observeAsState()
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -63,11 +66,19 @@ fun QuestionCard(modifier: Modifier = Modifier) {
             verticalArrangement = Arrangement.spacedBy(16.dp),
             horizontalAlignment = Alignment.Start
         ) {
-            MediumText(text = "Qual é a capital da França?")
-            QuestionOption(Modifier,"Londres")
-            QuestionOption(Modifier,"Berlim")
-            QuestionOption(Modifier,"Paris")
-            QuestionOption(Modifier,"Madri")
+
+            MediumText(text = currentQuestion?.text)
+
+            var i = 0
+            currentQuestion?.options?.forEachIndexed { index, option ->
+                QuestionOption(
+                    modifier = Modifier,
+                    content = option,
+                    escolherOpcao = {
+                        quizScreenViewModel.onAnswer(index)
+                    }
+                )
+            }
         }
     }
 

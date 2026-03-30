@@ -14,6 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.mobile_10_exercicio_quiz.quiz.QuizScreenViewModel
 import com.example.mobile_10_exercicio_quiz.screens.QuizScreen
 import com.example.mobile_10_exercicio_quiz.screens.ResultScreen
 import com.example.mobile_10_exercicio_quiz.screens.StartScreen
@@ -27,6 +28,7 @@ class MainActivity : ComponentActivity() {
             MOBILE_10_ExercicioQuizTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     val navController = rememberNavController()
+                    val quizScreenViewModel = QuizScreenViewModel()
 
                     NavHost(
                         navController = navController,
@@ -36,7 +38,11 @@ class MainActivity : ComponentActivity() {
                         {StartScreen(navController = navController)}
 
                         composable(route = "quiz")
-                        {QuizScreen(navController = navController)}
+                        {QuizScreen(
+                            modifier = Modifier,
+                            quizScreenViewModel = quizScreenViewModel,
+                            navController = navController,
+                        )}
 
                         composable(route = "result")
                         {ResultScreen(navController = navController)}

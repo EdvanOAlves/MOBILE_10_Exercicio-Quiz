@@ -1,8 +1,5 @@
 package com.example.mobile_10_exercicio_quiz.components
 
-import android.R.attr.onClick
-import android.R.attr.text
-import android.R.attr.textColor
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -35,9 +32,15 @@ fun ButtonYellow(modifier: Modifier = Modifier, text:String, onClick: ()->Unit) 
 }
 
 @Composable
-fun QuestionOption(modifier: Modifier = Modifier, content:String) {
+fun QuestionOption(
+    modifier: Modifier = Modifier,
+    content:String,
+    escolherOpcao:  () -> Unit
+) {
     OutlinedButton(
-        onClick = { /*TODO*/ },
+        onClick = {
+            escolherOpcao()
+        },
         modifier = Modifier
             .fillMaxWidth(),
         shape = RoundedCornerShape(8.dp)

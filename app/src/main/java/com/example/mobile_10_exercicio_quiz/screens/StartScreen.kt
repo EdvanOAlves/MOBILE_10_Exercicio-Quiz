@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -40,7 +41,10 @@ fun StartScreen(modifier: Modifier = Modifier, navController: NavController) {
         )
         Text(
             text = "Quiz dos bom de Terraria",
-            fontSize = 36.sp)
+            fontSize = 36.sp,
+            textAlign = TextAlign.Center,
+            lineHeight = 36.sp
+            )
         ButtonYellow(Modifier, "COMECAR!", onClick = {navController.navigate("quiz")})
     }
 

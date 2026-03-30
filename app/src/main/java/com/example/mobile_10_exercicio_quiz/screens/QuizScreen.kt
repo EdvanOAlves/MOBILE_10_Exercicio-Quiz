@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,10 +24,16 @@ import com.example.mobile_10_exercicio_quiz.R
 import com.example.mobile_10_exercicio_quiz.components.ButtonYellow
 import com.example.mobile_10_exercicio_quiz.components.QuestionCard
 import com.example.mobile_10_exercicio_quiz.components.GreenDisplay
+import com.example.mobile_10_exercicio_quiz.quiz.QuizScreenViewModel
 
 @Composable
-fun QuizScreen(modifier: Modifier = Modifier, /*current:Int, final:Int*/ navController: NavController) {
-    var current = 1;
+fun QuizScreen(modifier: Modifier = Modifier,
+               quizScreenViewModel: QuizScreenViewModel,
+               navController: NavController
+) {
+    val currentIndex by quizScreenViewModel.currentIndex.observeAsState(0)
+
+    //TODO: Final deve estar no viewmodel
     val final = 3;
     Column(
         modifier =
@@ -42,8 +50,9 @@ fun QuizScreen(modifier: Modifier = Modifier, /*current:Int, final:Int*/ navCont
             painter = painterResource(R.drawable.parrot),
             contentDescription = "Mascote"
         )
-        GreenDisplay(Modifier, "Pergunta $current de $final")
 
-        QuestionCard()
+        GreenDisplay(Modifier, "Pergunta ${currentIndex} de $final")
+
+        QuestionCard(quizScreenViewModel = quizScreenViewModel)
     }
 }
