@@ -60,4 +60,11 @@ class QuizScreenViewModel: ViewModel() {
         _currentIndexState.value = _currentIndexState.value!! + 1
         onQuestionChange()
     }
+
+    fun reset(){
+        _currentIndexState.value = 0
+        _scoreState.value = 0
+        _quizFinishState.value = false
+        _currentQuestionState.value = questionaire[_currentIndexState.value!!]
+    }
 }

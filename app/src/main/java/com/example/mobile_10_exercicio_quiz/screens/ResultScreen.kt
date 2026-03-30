@@ -55,7 +55,10 @@ fun ResultScreen(
             MediumText(Modifier, "Você acertou ${quizScreenViewModel.score.value} de 3 perguntas")
             Spacer(modifier = Modifier.height(24.dp))
         }
-        ButtonYellow(Modifier, "JOGAR NOVAMENTE", {})
+        ButtonYellow(Modifier, "JOGAR NOVAMENTE", {
+            quizScreenViewModel.reset()
+            navController.navigate("start")
+        })
     }
 
 
