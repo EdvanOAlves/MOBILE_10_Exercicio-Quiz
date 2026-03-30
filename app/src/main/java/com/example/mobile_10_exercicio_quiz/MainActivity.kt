@@ -20,6 +20,7 @@ import com.example.mobile_10_exercicio_quiz.screens.ResultScreen
 import com.example.mobile_10_exercicio_quiz.screens.StartScreen
 import com.example.mobile_10_exercicio_quiz.ui.theme.MOBILE_10_ExercicioQuizTheme
 
+val quizScreenViewModel = QuizScreenViewModel()
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +29,6 @@ class MainActivity : ComponentActivity() {
             MOBILE_10_ExercicioQuizTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     val navController = rememberNavController()
-                    val quizScreenViewModel = QuizScreenViewModel()
 
                     NavHost(
                         navController = navController,
@@ -45,7 +45,11 @@ class MainActivity : ComponentActivity() {
                         )}
 
                         composable(route = "result")
-                        {ResultScreen(navController = navController)}
+                        {ResultScreen(
+                            modifier = Modifier.padding(innerPadding),
+                            navController = navController,
+                            quizScreenViewModel = quizScreenViewModel
+                            )}
                     }
 //                    QuizScreen(modifier = Modifier.padding(innerPadding), 1, 3)
 //                    ResultScreen(modifier = Modifier.padding(innerPadding))

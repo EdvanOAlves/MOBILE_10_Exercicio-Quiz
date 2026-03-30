@@ -20,9 +20,14 @@ import com.example.mobile_10_exercicio_quiz.R
 import com.example.mobile_10_exercicio_quiz.components.ButtonYellow
 import com.example.mobile_10_exercicio_quiz.components.GreenDisplay
 import com.example.mobile_10_exercicio_quiz.components.MediumText
+import com.example.mobile_10_exercicio_quiz.quiz.QuizScreenViewModel
 
 @Composable
-fun ResultScreen(modifier: Modifier = Modifier, navController: NavController) {
+fun ResultScreen(
+    modifier: Modifier = Modifier,
+    quizScreenViewModel: QuizScreenViewModel,
+    navController: NavController
+) {
     Column(
         modifier =
             modifier
@@ -47,7 +52,7 @@ fun ResultScreen(modifier: Modifier = Modifier, navController: NavController) {
             Spacer(modifier = Modifier.height(24.dp))
             GreenDisplay(Modifier, "Bom trabalho!")
             Spacer(modifier = Modifier.height(24.dp))
-            MediumText(Modifier, "Você acertou 1 de 3 perguntas")
+            MediumText(Modifier, "Você acertou ${quizScreenViewModel.score.value} de 3 perguntas")
             Spacer(modifier = Modifier.height(24.dp))
         }
         ButtonYellow(Modifier, "JOGAR NOVAMENTE", {})

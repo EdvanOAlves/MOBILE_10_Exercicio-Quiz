@@ -51,8 +51,11 @@ fun QuizScreen(modifier: Modifier = Modifier,
             contentDescription = "Mascote"
         )
 
-        GreenDisplay(Modifier, "Pergunta ${currentIndex} de $final")
+        GreenDisplay(Modifier, "Pergunta ${currentIndex + 1} de $final")
 
         QuestionCard(quizScreenViewModel = quizScreenViewModel)
+        if (quizScreenViewModel.quizFinish.value!!){
+            navController.navigate("result")
+        }
     }
 }

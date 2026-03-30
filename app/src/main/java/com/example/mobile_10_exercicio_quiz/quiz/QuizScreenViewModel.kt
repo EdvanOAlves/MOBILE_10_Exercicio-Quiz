@@ -1,5 +1,7 @@
 package com.example.mobile_10_exercicio_quiz.quiz
 
+import android.R.attr.label
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,22 +12,24 @@ import com.example.mobile_10_exercicio_quiz.model.Question
 private val questionaire = listOf(
     Question("Qual o bioma do Elemental do Caos?",
         listOf("Corrupt", "Crimson", "Hallow", "Jungle"),
-        3),
+        2),
     Question(
         "Qual inimigo dropa o summon de Adaga Encantada?",
         listOf("Rainha Slime", "Espada Encantada", "Mimíco Hallow", "Tá mentindo, a princesa vende"),
-        correctAnswerIndex = 1
+        correctAnswerIndex = 0
     ),
     Question(
         "Qual dessas classes não existe mais?",
         listOf("Melee", "Ranged", "Summoner", "Throwing"),
-        4
+        3
     )
 )
 
 
 
 class QuizScreenViewModel: ViewModel() {
+    private val _quizFinishState = MutableLiveData<Boolean>(false)
+    var quizFinish = _quizFinishState
     private val _currentIndexState = MutableLiveData<Int>(0)
     var currentIndex: LiveData<Int> = _currentIndexState
 
@@ -39,11 +43,18 @@ class QuizScreenViewModel: ViewModel() {
     var currentQuestion: LiveData<Question> = _currentQuestionState
 
     fun onQuestionChange(){
-        _currentQuestionState.value = questionaire[_currentIndexState.value!!]
+        if (currentIndex.value == questionaire.size){
+                _quizFinishState.value = true
+        }
+        else{
+            _currentQuestionState.value = questionaire[_currentIndexState.value!!]
+        }
     }
 
     fun onAnswer(answerIndex:Int){
-        if(answerIndex == currentQuestion.value?.correctAnswerIndex){
+        var correctAnswer = currentQuestion.value?.correctAnswerIndex
+
+        if(answerIndex == correctAnswer){
             _scoreState.value = _scoreState.value!! + 1;
         }
         _currentIndexState.value = _currentIndexState.value!! + 1
