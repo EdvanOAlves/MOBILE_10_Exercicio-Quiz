@@ -26,7 +26,7 @@ private val questionaire = listOf(
 
 
 class QuizScreenViewModel: ViewModel() {
-    private val _currentIndexState = MutableLiveData<Int>()
+    private val _currentIndexState = MutableLiveData<Int>(0)
     var currentIndex: LiveData<Int> = _currentIndexState
 
     //Criando um objeto estavel mutável
@@ -35,11 +35,11 @@ class QuizScreenViewModel: ViewModel() {
     //Variável para coletar o resultado ao ser alterado
     var score: LiveData<Int> = _scoreState
 
-    private val _currentQuestionState = MutableLiveData<Question>(questionaire[0])
+    private val _currentQuestionState = MutableLiveData<Question>(questionaire[currentIndex.value!!])
     var currentQuestion: LiveData<Question> = _currentQuestionState
 
     fun onQuestionChange(){
-        _currentQuestionState.value = questionaire[currentIndex.value!!]
+        _currentQuestionState.value = questionaire[_currentIndexState.value!!]
     }
 
     fun onAnswer(answerIndex:Int){
@@ -47,7 +47,6 @@ class QuizScreenViewModel: ViewModel() {
             _scoreState.value = _scoreState.value!! + 1;
         }
         _currentIndexState.value = _currentIndexState.value!! + 1
-
         onQuestionChange()
     }
 }
